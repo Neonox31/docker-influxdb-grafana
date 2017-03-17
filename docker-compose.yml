@@ -16,4 +16,5 @@ services:
       - "3000:3000"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /srv/docker/grafana:/etc/grafana
+      - /srv/docker/grafana/etc:/etc/grafana
+      - /srv/docker/grafana/var:/var/lib/grafana
