@@ -8,6 +8,7 @@ services:
       - "8086:8086"
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - /srv/docker/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
       - /srv/docker/influxdb:/var/lib/influxdb
   grafana:
     image: grafana/grafana
@@ -16,5 +17,5 @@ services:
       - "3000:3000"
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /srv/docker/grafana/etc:/etc/grafana
-      - /srv/docker/grafana/var:/var/lib/grafana
+      - /srv/docker/grafana/grafana.conf:/etc/grafana/grafana.ini:ro
+      - /srv/docker/grafana:/var/lib/grafana
