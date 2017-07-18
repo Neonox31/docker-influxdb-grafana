@@ -13,7 +13,7 @@ services:
       - /srv/docker/influxdb:/var/lib/influxdb
     labels:
       - "traefik.backend=influxdb"
-      - "traefik.port=80" 
+      - "traefik.port=8083" 
       - "traefik.frontend.rule=Host:influxdb.weberhome.lan"
   grafana:
     image: grafana/grafana
