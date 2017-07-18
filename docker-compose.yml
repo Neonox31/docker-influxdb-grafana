@@ -1,9 +1,14 @@
 version: '2'
+networks:
+  weberhome_lan:
+    external: true
 services:
   influxdb:
     image: influxdb
     container_name: influxdb
     restart: always
+    networks:
+      - weberhome_lan
     ports:
       - "8083:8083"
       - "8086:8086"
@@ -19,9 +24,11 @@ services:
     image: grafana/grafana
     container_name: grafana
     restart: always
+    networks:
+      - weberhome_lan
     ports:
       - "3000:3000"
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /srv/docker/grafana/grafana.ini:/etc/grafana/grafana.ini
-      - /srv/docker/grafana:/var/lib/grafana
+      - /srv/docker/grafana/db:/var/lib/grafana
