@@ -2,6 +2,7 @@ version: '2'
 services:
   influxdb:
     image: influxdb
+    container_name: influxdb
     restart: always
     ports:
       - "8083:8083"
@@ -10,8 +11,12 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /srv/docker/influxdb/influxdb.conf:/etc/influxdb/influxdb.conf:ro
       - /srv/docker/influxdb:/var/lib/influxdb
+    labels:
+      - "traefik.backend=influxdb"
+      - "traefik.frontend.rule=Host:influxdb.weberhome.lan"
   grafana:
     image: grafana/grafana
+    container_name: grafana
     restart: always
     ports:
       - "3000:3000"
